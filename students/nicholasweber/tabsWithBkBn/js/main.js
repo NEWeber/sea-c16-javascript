@@ -2,6 +2,18 @@
 var _ = require('lodash');
 var hashComp = _.template()
 */
+var Tabs = Backbone.Model.extend({});
+
+var TabsView = Backbone.View.extend({
+  tagName: 'li',
+  template: _.template('<%= name %>')
+  render: function() {
+    var attributes = this.model.toJSON();
+    this.$el.html(this.template(attributes));
+  }
+});
+
+
 $(document).ready;
 
 var populateTabs = function() {
