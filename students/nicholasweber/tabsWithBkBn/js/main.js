@@ -2,18 +2,41 @@
 var _ = require('lodash');
 var hashComp = _.template()
 */
-var Tabs = Backbone.Model.extend({});
 
-var TabsView = Backbone.View.extend({
-  tagName: 'li',
-  template: _.template('<%= name %>')
-  render: function() {
-    var attributes = this.model.toJSON();
-    this.$el.html(this.template(attributes));
-  }
+
+var Tab = Backbone.Model.extend({});
+
+var Tabs = Backbone.Collection.extend({
+  url: 'http://rs.hankyates.com:3000/content',
+  model: Tab
 });
 
 
+var TabsView = Backbone.View.extend({
+  //tagName: 'li',
+  el:'.tabs-area',
+  render: function () {
+    var that = this;
+    var tabs = new Tabs();
+    tabs.fetch({
+      success: function (tabs) {
+        console.log("Got the data!")
+        var template = _.template($('#tab-template').html(), {tabs: tabs.models});
+        that.$el.html(template);
+      }
+    })
+  
+    //var attributes = this.model.toJSON();
+    console.log("I ran the render!")
+  }
+}); 
+
+var tabsView = new TabsView();
+
+tabsView.render();
+
+
+/*
 $(document).ready;
 
 var populateTabs = function() {
@@ -47,3 +70,4 @@ $(".refresh").on('click', function() {
   $('#article-area').empty();
   populateTabs();
 });
+*/

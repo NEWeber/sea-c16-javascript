@@ -9,7 +9,7 @@
   <body>
     <div id='main-wrapper'>
       <nav>
-        <ul>
+        <ul class='tabs-area'>
 
         </ul>
       </nav>
@@ -24,6 +24,17 @@
     <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
     <script src="../node_modules/underscore/underscore.js"></script>
     <script src="../node_modules/backbone/backbone.js"></script>
+    <script type="text/template" id="tab-template">
+
+      <% _.each(tabs, function(tab) { %>
+
+          <li>
+            <a href="#<%= tab.get('name')%>"> <%= tab.get('name')%> </a>
+          </li>
+        
+      <% }); %>
+      
+    </script>
     <script src="js/main.js"></script>
   </body>
 </html>
