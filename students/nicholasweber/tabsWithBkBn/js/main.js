@@ -14,7 +14,7 @@ var Tabs = Backbone.Collection.extend({
 
 var TabsView = Backbone.View.extend({
   //tagName: 'li',
-  el:'.tabs-area',
+  el:'.main-area',
   render: function () {
     var that = this;
     var tabs = new Tabs();
