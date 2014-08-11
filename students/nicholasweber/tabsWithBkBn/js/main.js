@@ -24,8 +24,11 @@ var TabsView = Backbone.View.extend({
         console.log("Got the data!")
         var template = _.template($('#tab-template').html(), {tabs: tabs.models});
         that.$el.html(template);
-        console.log($("li:first a").html());
+        //give the first tab highlighting and populate the display area with the first article.
         $("li:first a").attr('id', 'active-section');
+        var getThisArt = $("li:first a").attr('href');
+        var content = $(getThisArt).html();
+        $('section').html(content);
       }
     })
 
