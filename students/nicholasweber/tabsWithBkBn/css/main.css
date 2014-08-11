@@ -2,7 +2,7 @@ nav {
 
 }
 
-body > div {
+body > div > div {
   width: 350px;
   border-style: solid;
   border-color: black;

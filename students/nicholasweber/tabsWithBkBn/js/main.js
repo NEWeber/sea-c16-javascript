@@ -24,10 +24,8 @@ var TabsView = Backbone.View.extend({
         console.log("Got the data!")
         var template = _.template($('#tab-template').html(), {tabs: tabs.models});
         that.$el.html(template);
-
-          console.log($("li:first a").html());
-          $("li:first a").attr('id', 'active-section');
-
+        console.log($("li:first a").html());
+        $("li:first a").attr('id', 'active-section');
       }
     })
 
@@ -35,7 +33,8 @@ var TabsView = Backbone.View.extend({
   },
 
   events: {
-    "click a" : "changeArticle"
+    "click a" : "changeArticle",
+    "click .refresh" : "reloadAll"
   },
   changeArticle: function(e){
     console.log(e);
@@ -48,6 +47,11 @@ var TabsView = Backbone.View.extend({
     $('#active-section').removeAttr('id', 'active-section');
     //e.currentTarget targets the tab that the user clicked on to give it the active highlighting.
     $(e.currentTarget).attr('id', 'active-section');
+  },
+  reloadAll: function(e) {
+    console.log("Wipe it away!")
+    $('.main-area').empty();
+    tabsView.render();
   }
 }); 
 
