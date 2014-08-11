@@ -15,6 +15,7 @@ var Tabs = Backbone.Collection.extend({
 var TabsView = Backbone.View.extend({
   //tagName: 'li',
   el:'.main-area',
+
   render: function () {
     var that = this;
     var tabs = new Tabs();
@@ -23,11 +24,30 @@ var TabsView = Backbone.View.extend({
         console.log("Got the data!")
         var template = _.template($('#tab-template').html(), {tabs: tabs.models});
         that.$el.html(template);
+
+          console.log($("li:first a").html());
+          $("li:first a").attr('id', 'active-section');
+
       }
     })
-  
-    //var attributes = this.model.toJSON();
+
     console.log("I ran the render!")
+  },
+
+  events: {
+    "click a" : "changeArticle"
+  },
+  changeArticle: function(e){
+    console.log(e);
+    //hash gets the id of the article that the user clicked on
+    var hash = e.currentTarget.hash;
+    console.log("Trying to change the article.")
+    console.log(hash);
+    var content = $(hash).html();
+    $('section').html(content);
+    $('#active-section').removeAttr('id', 'active-section');
+    //e.currentTarget targets the tab that the user clicked on to give it the active highlighting.
+    $(e.currentTarget).attr('id', 'active-section');
   }
 }); 
 
